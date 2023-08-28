@@ -1,0 +1,37 @@
+open jdk 
+jdk
+전자정부프레임워크
+admin lte
+
+
+create tablespace fashionshop
+datafile 'C:\oraclexe\app\oracle\oradata\XE\fashionshop.dbf'
+size 5m;
+
+create user fashion identified by 1234
+default tablespace fashionshop
+quota unlimited on fashionshop;
+
+grant create session, create table, create sequence to fashion;
+
+--관리자 테이블 만들기
+create table admin(
+	admin_idx number primary key
+	, admin_id varchar2(20)
+	, admin_pass varchar2(64)
+	, admin_name varchar2(20)
+);
+
+create sequence seq_admin
+increment by 1
+start with 1;
+
+insert into admin (admin_idx, admin_id, admin_pass) values(seq_admin.nextval, 'kinkin','1234');
+commit;
+
+
+
+
+		<Resource driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="5" maxWait="10000" name="jdbc/oracle" password="1234" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="jsp1"/>
+		
+		<Resource driverClassName="com.mysql.jdbc.Driver" maxActive="10" maxIdle="5" maxWait="10000" name="jdbc/mysql" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/javaee?characterEncoding=utf-8" username="jsp1"/>

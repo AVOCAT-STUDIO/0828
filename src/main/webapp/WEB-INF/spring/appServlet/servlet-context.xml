@@ -21,9 +21,14 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 싱글턴으로 선언된객체의 경우 sml 로 표현이 가능 -->
+	
+		<beans:bean class="org.sp.app0828.mybatis.MybatisConfig" id="mybatisConfig" factory-method="getInstance"/>
+	
+	
 	
 	<!-- 지정한 패키지안의 클래스들을 모조리 검색하여 스프링에서 지정한 컴포넌트에 해당될경우 메모리에 인스턴스를 생성해줌 -->
-	<context:component-scan base-package="org.sp.app0828" />
+	<context:component-scan base-package="org.sp.app0828"/>
 	
 	
 	
