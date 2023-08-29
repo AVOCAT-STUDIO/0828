@@ -1,0 +1,43 @@
+0829
+
+create table topcategory(
+	topcategory_idx number primary key
+	, top_name varchar2(20)
+);
+
+create table subcategory(
+	subcategory_idx number primary key
+	, topcategory_idx number
+	, sub_name varchar2(20)
+	, constraint fk_topcategory_subcategory foreign key (topcategory_idx) references topcategory(topcategory_idx)
+);
+
+create sequence seq_topcategory
+increment by 1
+start with 1;
+
+create sequence seq_subcategory
+increment by 1
+start with 1;
+
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '1','가디건');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '1','티셔츠');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '1','점퍼');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '1','코트');
+
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '2','긴바지');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '2','반바지');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '2','치마');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '2','치마바지');
+
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '3','벨트');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '3','모자');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '3','넥타이');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '3','가방');
+
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '4','운동화');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '4','구두');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '4','샌들');
+INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '4','실내화');
+COMMIT;
+
