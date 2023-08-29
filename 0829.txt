@@ -41,3 +41,74 @@ INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_
 INSERT INTO SUBCATEGORY (subcategory_idx, topcategory_idx, sub_name) values(seq_subcategory.nextval, '4','실내화');
 COMMIT;
 
+
+CREATE TABLE size_info(
+	size_info_idx NUMBER PRIMARY KEY
+	, spec varchar2(10)
+);
+
+create sequence seq_size_info
+increment by 1
+start with 1;
+
+INSERT INTO size_info(size_info_idx, spec ) VALUES(seq_size_info.nextval, '90'); 
+INSERT INTO size_info(size_info_idx, spec ) VALUES(seq_size_info.nextval, '95'); 
+INSERT INTO size_info(size_info_idx, spec ) VALUES(seq_size_info.nextval, '100'); 
+INSERT INTO size_info(size_info_idx, spec ) VALUES(seq_size_info.nextval, '105'); 
+
+SELECT * FROM size_info;
+COMMIT;
+
+CREATE TABLE product_img(
+	product_img_idx NUMBER PRIMARY KEY
+	, 
+);
+
+
+CREATE TABLE product(
+	product_idx NUMBER PRIMARY KEY
+	, subcategory_idx number
+	, product_name varchar2(25)
+	, brand varchar2(20)
+	, price NUMBER DEFAULT 0
+	, detail clob
+	, CONSTRAINT fk_subcategory_product FOREIGN KEY (subcategory_idx) REFERENCES subcategory(subcategory_idx);
+);
+
+
+create sequence seq_product
+increment by 1
+start with 1;
+
+
+
+CREATE TABLE product_size(
+	product_size_idx NUMBER PRIMARY KEY
+	, product_idx NUMBER 
+	, size_info_idx NUMBER
+	, CONSTRAINT fk_product_product_size FOREIGN KEY (product_idx) REFERENCES product(product_idx)
+	, CONSTRAINT fk_size_info_product_size FOREIGN KEY (size_info_idx) REFERENCES size_info(size_info_idx)
+);
+
+
+
+create sequence seq_product_size
+increment by 1
+start with 1;
+
+CREATE TABLE product_img(
+	product_img_idx NUMBER PRIMARY KEY
+	, product_idx NUMBER
+	, filename varchar2(25)
+	, CONSTRAINT fk_product_product_img FOREIGN KEY (product_idx) REFERENCES product(product_idx)
+);
+
+create sequence seq_product_img
+increment by 1
+start with 1;
+ 
+
+commit;
+
+동기 =실행부가 특정코드 영역이 모두 수행될때 까지 기다리는 방식 ==지금까지 우리가 코드를 구현한 방식
+비동기 =

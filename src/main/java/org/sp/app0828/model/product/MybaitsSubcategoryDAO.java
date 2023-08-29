@@ -22,7 +22,7 @@ public class MybaitsSubcategoryDAO implements SubCategoryDAO {
 		SqlSession sqlSession = mybatisConfig.getSqlSession();
 		List list = sqlSession.selectList("SubCategory.selectAllByFkey", topcategory_idx);
 		mybatisConfig.release(sqlSession);
-		return null;
+		return list;
 	}
 
 }
